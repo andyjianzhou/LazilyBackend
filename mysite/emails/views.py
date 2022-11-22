@@ -12,5 +12,5 @@ def index(request):
         print(data)
         email = data['params']['email']
         mail.send_email(email)  
-        return HttpResponse(email)
+        # return HttpResponse(email)
     return HttpResponse("OK")
