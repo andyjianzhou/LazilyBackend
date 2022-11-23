@@ -11,6 +11,6 @@ def index(request):
         data = json.loads(request.body)
         print(data)
         email = data['params']['email']
-        mail.send_news(email)  
+        mail.send_email(email)  
         return HttpResponse(email)  
     return HttpResponse("OK")
