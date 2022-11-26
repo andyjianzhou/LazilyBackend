@@ -18,5 +18,7 @@ Including another URLconf
 
 urlpatterns = [
     path('api/emails/', include('emails.urls')),
+    path('api/getNewsletter/', include('emails.urls')),
+    path('api/emails/newsletter.html', include('emails.urls')),
     path('admin/', admin.site.urls),
 ]
