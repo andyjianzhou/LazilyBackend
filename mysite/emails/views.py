@@ -63,5 +63,5 @@ def newsletter_thread():
     loop.run_until_complete(initiate_newsletter(db))
     # loop.run_forever()
 
-newsletter_thread()
+# newsletter_thread()
 
