@@ -3,35 +3,11 @@ import json
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.csrf import csrf_exempt
 from . import mail as m
-from .webscraping import sendNewsletter
-from .database import database
-from datetime import datetime, timezone
+from .migrations.webscraping import sendNewsletter
+from .migrations.database import database
 
 
 db = database.MyDatabase('emails.db')
-# run the newsletter function every day at 8:00am asynchronously
-# async def initiate_newsletter(db):
-#     # print("running")
-#     Mail = m.Mail
-#     time = datetime.now(timezone.utc)
-#     #convert time to local time
-#     time = time.astimezone()
-#     hour, minute = time.hour-4, time.minute
-#     print(hour, minute)
-#     #send the news letter every day at 8:00am
-#     if hour == 13 and minute == 2:
-#             print("=================Newsletter test====================")
-#     if time.hour == 8:
-#         #send the newsletter
-#         print("Sending newsletter")
-#         content = sendNewsletter.send_newsletter()
-#         emails = db.fetch()
-#         for email in emails:
-#             mail = Mail(email, content, html=True)
-#             mail.subscription_send_email()
-#     return HttpResponse("Newsletter sent")
-
-
 @csrf_exempt
 def index(request):
     # Get the data sent from the client
@@ -55,12 +31,4 @@ def index(request):
             return HttpResponse("Email added")
     return HttpResponse("RUNNING") 
 
-#run the newsletter function every day at 8:00am asynchronously never ending
-# def newsletter_thread():
-#     loop = asyncio.new_event_loop()
-#     asyncio.set_event_loop(loop)
-#     loop.run_until_complete(initiate_newsletter(db))
-    # loop.run_forever()
-
-# newsletter_thread()
 

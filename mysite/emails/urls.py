@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
-from .webscraping import getNewsletter
-from .webscraping import sendNewsletter
+from .migrations.webscraping import getNewsletter
+from .migrations.webscraping import sendNewsletter
   
 urlpatterns = [
     path('', views.index, name='index'),
