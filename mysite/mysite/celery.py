@@ -16,8 +16,8 @@ from celery import Celery
 from django.conf import settings
 from celery.schedules import crontab
 # Set the default Django settings module for the 'celery' program.
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'main.settings')
-app = Celery('main')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
+app = Celery('mysite')
 app.conf.enable_utc=False
 app.conf.update(timezone='US/Mountain')
 # Using a string here means the worker doesn't have to serialize

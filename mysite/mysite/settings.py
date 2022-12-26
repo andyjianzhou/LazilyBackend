@@ -38,7 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "corsheaders",
+    'corsheaders',
+
+    'django_celery_beat',
+    'django_celery_results',
+
 ]
 
 MIDDLEWARE = [
@@ -146,6 +150,19 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
 # lazilynews@gmail.com
-EMAIL_HOST_USER = '****' # add less secure app here later
+EMAIL_HOST_USER = '*****' # add less secure app here later
 EMAIL_HOST_PASSWORD = '*****' # add less secure app pass here later
 EMAIL_USE_TLS = True
+
+'''Celery stuff'''
+
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'
+
+# Stores tasks backend to django db
+CELERY_RESULT_BACKEND = 'django-db'
+# Celery beat settings
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
