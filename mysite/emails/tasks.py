@@ -7,11 +7,11 @@ from django.template.loader import render_to_string
 from migrations.database import database
 from .. import mail as m
 from celery.schedules import crontab
-from celery import periodic_task
+from celery import shared_task
 
 # app = Celery('mysite', broker='redis://localhost:6379/0')
 
-@periodic_task
+@shared_task
 def send_newsletter():
     db = database.MyDatabase('emails.db')
     mail = m.Mail()
@@ -19,6 +19,7 @@ def send_newsletter():
     mail.Mail(emails, sendNewsletter.send_newsletter(), html=True)
     mail.subscription_send_email()
     print("Newsletter sent!")
+    return "Newsletter sent!"
 
 # Run command to run celery
 # celery -A mysite worker -l info
