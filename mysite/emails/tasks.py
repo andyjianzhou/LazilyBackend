@@ -16,7 +16,7 @@ def send_newsletter():
     db = database.MyDatabase('emails.db')
     mail = m.Mail()
     emails = db.get_all()
-    mail.Mail(emails, sendNewsletter.get_newsletter(), html=True)
+    mail.Mail(emails, sendNewsletter.send_newsletter(), html=True)
     mail.subscription_send_email()
     print("Newsletter sent!")
 

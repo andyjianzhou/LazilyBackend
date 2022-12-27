@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from . import mail as m
 from .migrations.webscraping import sendNewsletter
 from .migrations.database import database
+from .migrations.webscraping import sendNewsletter
 
 
 db = database.MyDatabase('emails.db')
@@ -22,6 +23,9 @@ def index(request):
             content = "You are already subscribed to our daily newsletter!"
             mail = Mail(email, content, html=False)
             mail.subscription_send_email()
+            # send html page sendNewsletter.get_newsletter()
+            # mail = Mail(email, sendNewsletter.send_newsletter(), html=True)
+            # mail.subscription_send_email()
             return HttpResponse("Email already exists")
         else:
             db.insert(email)
@@ -29,6 +33,8 @@ def index(request):
             mail = Mail(email, content, html=False)
             mail.subscription_send_email()
             return HttpResponse("Email added")
+        
+    
     return HttpResponse("RUNNING") 
 
 

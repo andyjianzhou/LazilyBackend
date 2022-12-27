@@ -28,6 +28,11 @@ class MyDatabase:
     def __del__(self):
         self.conn.close()
 
+    # The schema for the database is as follows:
+    # id | email
+    # 1  |
+    # 2  |
+    # and is created in the __init__ method
 
     #     async def initiate_newsletter(db):
     # print("running")
