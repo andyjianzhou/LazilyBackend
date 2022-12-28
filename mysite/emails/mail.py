@@ -1,12 +1,12 @@
-from django.core.mail import send_mail
+from django.core.mail import send_mail, send_mass_mail
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 class Mail:
-    def __init__(self, email, content, html=False):
+    def __init__(self, email, content, send_mass = False, html=False):
         self.email = email
         self.content = content
+        self.send_mass = send_mass
         self.html = html
-
     def subscription_send_email(self):
         subject = 'Thank you for subscribing to our daily newsletter!'
         message = self.content

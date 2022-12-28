@@ -23,9 +23,7 @@ def index(request):
             content = "You are already subscribed to our daily newsletter!"
             mail = Mail(email, content, html=False)
             mail.subscription_send_email()
-            # send html page sendNewsletter.get_newsletter()
-            # mail = Mail(email, sendNewsletter.send_newsletter(), html=True)
-            # mail.subscription_send_email()
+            
             return HttpResponse("Email already exists")
         else:
             db.insert(email)
