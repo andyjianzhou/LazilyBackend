@@ -30,7 +30,9 @@ app.config_from_object(settings, namespace='CELERY')
 app.conf.beat_schedule = {
     'send-newsletter': {
         'task': 'emails.tasks.send_newsletter',
-        'schedule': crontab(minute=0, hour=0), # Every day at midnight
+        # everydayd at 8:00 AM in the morning
+        'schedule': crontab(minute=0, hour=8), # Every day at 8:00 AM
+        # 'schedule': crontab(minute=0, hour=0), # Every day at midnight
     },
 }
 app.autodiscover_tasks()
