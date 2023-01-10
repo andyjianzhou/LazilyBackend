@@ -24,15 +24,6 @@ class MyDatabase:
     def remove(self, id):
         self.cur.execute("DELETE FROM email WHERE id=?", (id,))
         self.conn.commit()
-    
-    def get_all(self):
-        self.cur.execute("SELECT * FROM email")
-        # get all the emails and return them as a list
-        rows = self.cur.fetchall()
-        emails = []
-        for row in rows:
-            emails.append(row[1])
-        return emails
 
     def __del__(self):
         self.conn.close()
