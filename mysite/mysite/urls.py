@@ -21,4 +21,5 @@ urlpatterns = [
     path('api/getNewsletter/', include('emails.urls')),
     path('api/emails/newsletter.html', include('emails.urls')),
     path('admin/', admin.site.urls),
+    path('api/sendNewstoFrontend/', include('emails.urls')),
 ]

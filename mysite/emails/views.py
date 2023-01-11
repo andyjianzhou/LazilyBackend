@@ -38,3 +38,16 @@ def index(request):
     return HttpResponse("RUNNING") 
 
 
+# create a REST api to send the database information to the frontend
+@csrf_exempt
+def sendNewstoFrontend(request):
+    if request.method == 'GET':
+        db = database.MyDatabase('emails.db')
+        emails = db.fetch()
+        # turn into json
+        emails = json.dumps(emails)
+        print(emails)
+        return HttpResponse(emails)
+    return HttpResponse("RUNNING")
+
+
